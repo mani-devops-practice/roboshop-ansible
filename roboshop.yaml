@@ -74,6 +74,6 @@
         type: A
         ttl: 1
       loop: "{{ instances }}"
-      when: action == "destroy"
+      when: task_to_do == "destroy"
        
 
