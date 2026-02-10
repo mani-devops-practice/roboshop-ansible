@@ -1,5 +1,5 @@
 - name: create ec2 instance
-  hosts: local
+  hosts: all
   connection: local
   vars:
     sg_id: "sg-0928fb36c1def6679"
