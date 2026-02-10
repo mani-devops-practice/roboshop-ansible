@@ -26,12 +26,12 @@
           Name: "{{ item }}-{{ env }}"
       loop: "{{ instances }}"
       register: ec2_output
-      when: action == create
+      when: action == "create"
     
     - name: print the ec2_output
       ansible.builtin.debug:
         msg: "{{ ec2_output }}"
-      when: action == create
+      when: action == "create"
     
     - name: create a route 53
       amazon.aws.route53:
@@ -43,7 +43,7 @@
         value: "{{ item.instances[0].private_ip_address }}"
         wait: true
       loop: "{{ ec2_output.results }}"
-      when: action == create
+      when: action == "create"
    
     - name: create a route 53
       amazon.aws.route53:
@@ -57,5 +57,5 @@
       loop: "{{ ec2_output.results }}"
       when: 
         - item.item == "frontend"
-        - action == create
+        - action == "create"
 
