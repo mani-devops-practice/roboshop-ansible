@@ -13,7 +13,7 @@
   tasks:
     # CREATE EC2 instance
     - name: Creating the ec2 instance
-      ansible.aws.ec2.instance:
+      ansible.aws.ec2_instance:
         security_group: "{{ sg_id }}"
         instance_type: " {{ type_instance }}"
         image_id: "{{ ami_id }}"
@@ -29,5 +29,4 @@
     - name: print the ec2_output
       ansible.builtin.debug:
         msg: "{{ ec2_output }}"
-        
-         
+
