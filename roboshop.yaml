@@ -1,0 +1,33 @@
+- name: create ec2 instance
+  hosts: local
+  connection: local
+  vars:
+    sg_id: "sg-0928fb36c1def6679"
+    type_instance: "t3.micro"
+    ami_id: "ami-0220d79f3f480ecf5"
+    domain_name: manig.online
+    env: dev
+    instances:
+       - mongodb
+       - catalogue
+  tasks:
+    # CREATE EC2 instance
+    - name: Creating the ec2 instance
+      ansible.aws.ec2.instance:
+        security_group: "{{ sg_id }}"
+        instance_type: " {{ type_instance }}"
+        image_id: "{{ ami_id }}"
+        name: "{{ item }}-{{ env }}"
+        tags:
+          Project: roboshop
+          Environment: "{{ env }}"
+          Component: "{{ item }}"
+          Name: "{{ item }}-{{ env }}"
+      loop: "{{ instances }}"
+      register: ec2_output
+    
+    - name: print the ec2_output
+      ansible.builtin.debug:
+        msg: "{{ ec2_output }}"
+        
+         
