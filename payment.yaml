@@ -45,10 +45,15 @@
         dest: /app
         remote_src: yes 
     
+    # - name: install requirements # IT HAS SOME ERROR
+    #   ansible.builtin.pip:
+    #     equirements: requirements.txt
+    #     executable: pip3.9
+    #   args:
+    #     chdir: /app
+    
     - name: install requirements
-      ansible.builtin.pip:
-        equirements: requirements.txt
-        executable: pip3.9
+      ansible.builtin.command: pip3.9 -r requirements.txt
       args:
         chdir: /app
 
