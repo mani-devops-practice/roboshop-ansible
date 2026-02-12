@@ -1,4 +1,5 @@
 # cmd:: ansible-playbook -i localhost, -e '{"instances":["mongodb","catalogue","redis","user","cart","mysql","shipping","rabbitmq","payment"]}' roboshop.yaml
+# OR cmd: ansible-playbook -i localhost, -e "instances=['mongodb']"
 - name: create ec2 instance and Route53
   hosts: all
   connection: local
