@@ -53,7 +53,7 @@
     #     chdir: /app
     
     - name: install requirements
-      ansible.builtin.command: pip3.9 -r requirements.txt
+      ansible.builtin.command: pip3 -r requirements.txt
       args:
         chdir: /app
 
