@@ -45,9 +45,8 @@
         remote_src: yes
 
     - name: install and build dependencies 
-      ansible.builtin.command:
-        cmd: mvn clean package
-        args:
+      ansible.builtin.command: mvn clean package
+      args:
           chdir: /app
     
     - name: move package 
