@@ -3,7 +3,7 @@
   become: yes
   tasks:
     - name: enable nginx
-      ansible.builtin.command: dnf module enable nginx:1.24
+      ansible.builtin.command: dnf module enable nginx:1.24 -y 
     
     - name: install nginx
       ansible.builtin.dnf:
@@ -39,7 +39,7 @@
     - name: copy the nginx conf file from repo
       ansible.builtin.template:
         src: nginx.conf
-        dest: /etc/nginx/ngnix.conf
+        dest: /etc/nginx/nginx.conf
     
     - name: start and enable nginx
       ansible.builtin.service:
