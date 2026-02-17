@@ -82,5 +82,17 @@
         ttl: 1
       loop: "{{ instances }}"
       when: task_to_do == "destroy"
+
+    - name: delete r53 records # Delete for the roboshop
+      amazon.aws.route53:
+        state: absent
+        zone: "{{ domain_name }}"
+        record: "roboshop-{{ env }}.{{ domain_name }}" 
+        type: A
+        ttl: 1
+      loop: "{{ instances }}"
+      when: 
+        - task_to_do == "destroy"
+        - item == "frontend"
        
 
